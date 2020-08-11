@@ -24,6 +24,10 @@ gem 'jbuilder', '~> 2.7'
 
 #Use for user authorization
 gem 'devise'
+gem 'pry'
+gem 'notifications'
+
+gem 'font-awesome-sass'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

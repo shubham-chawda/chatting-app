@@ -9,6 +9,7 @@
           <small>Logged in as</small><br>
           <b><%= current_user.username %><br></b>
         </div>
+        <%= link_to pluralize(Notification.unread_count(current_user), 'Notification'), notifications_path %>
       </div>
       <hr>
       <%= render 'form', room: Room.new %>

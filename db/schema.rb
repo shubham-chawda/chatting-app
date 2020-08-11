@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_160114) do
+ActiveRecord::Schema.define(version: 2020_08_11_060956) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(version: 2020_08_10_160114) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "actor_id"
+    t.string "notify_type", null: false
+    t.string "target_type"
+    t.bigint "target_id"
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "notify_type"], name: "index_notifications_on_user_id_and_notify_type"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|

@@ -1,0 +1,8 @@
+<%= cache(['notifications', Notifications::VERSION, notification]) do %>
+<div id="notification-<%= notification.id %>"
+  <div class="media-body">
+    <br><br>
+    <%= render partial: "/notifications/notifications/#{notification.notify_type}", locals: { notification: notification } %>
+  </div>
+</div>
+<% end %>
