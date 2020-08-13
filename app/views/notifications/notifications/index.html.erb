@@ -1,14 +1,19 @@
 <div class="notifications row">
   <div class="heading clearfix">
-    <%= t('notifications.all_notifications') %>
 
   </div>
-  <div class="list">
-    <% @notification_groups.each do |group, notifications| %>
-      <div class="notification-group">
-        <%= render notifications %>
-      </div>
-  <% end %>
-  </div>
+  <ul>
+    <div class="list">
+      <% @notification_groups.each do |group, notifications| %>
+        <div class="notification-group">
+          <%= render notifications %>
+        </div>
+      <% end %>
+    </div>
+  </ul>
+
+  <span class="pull-xs-right">
+    <%= link_to t('notifications.clean_all'), notifications.clean_notifications_path, class: 'btn btn-sm btn-secondary', method: 'delete' %>
+  </span>
   <%= paginate @notifications %>
 </div>

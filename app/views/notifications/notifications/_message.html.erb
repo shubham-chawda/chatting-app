@@ -1,9 +1,6 @@
 <div class='message'>
-  <li><strong><%= notification.actor.username %></strong> has messaging in group
-    <strong><%= notification.target.content %></strong>
-  </li>
+  <% if notification.target.present? %>
+    <strong><%= notification.actor.username %></strong> has messaging in group
+    <strong><%= notification.target.content %></strong><br>
+  <% end %>
 </div>
-<br>
-<span class="pull-xs-right">
-  <%= link_to t('notifications.clean_all'), notifications.clean_notifications_path, class: 'btn btn-sm btn-secondary', method: 'delete' %>
-</span>
