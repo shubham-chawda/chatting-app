@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_060956) do
+ActiveRecord::Schema.define(version: 2020_08_13_084228) do
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "sender_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipient_id", "sender_id"], name: "index_conversations_on_recipient_id_and_sender_id", unique: true
+  end
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
@@ -41,6 +49,16 @@ ActiveRecord::Schema.define(version: 2020_08_11_060956) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id", null: false
+    t.integer "conversation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_user_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_user_messages_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
@@ -56,4 +74,6 @@ ActiveRecord::Schema.define(version: 2020_08_11_060956) do
 
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "user_messages", "conversations"
+  add_foreign_key "user_messages", "users"
 end
