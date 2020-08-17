@@ -2,10 +2,9 @@ class UserMessagesController < ApplicationController
 
   def create
     @conversation = Conversation.includes(:recipient).find(params[:conversation_id])
-    @message = @conversation.user_messages.create(message_params)
-    respond_to do |format|
-      format.js
-    end
+    @user_message = @conversation.user_messages.create(message_params)
+
+    # PrivateMessageJob.perform_later(@user_message)
   end
 
   private

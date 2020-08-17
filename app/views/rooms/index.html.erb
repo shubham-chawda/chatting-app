@@ -3,13 +3,25 @@
 
 <div class="container-fluid">
   <div class="row">
+    <div class="col-md-12">
+      <%= link_to "Logout", destroy_user_session_path, method: :DELETE, class: "btn btn-danger btn-sm" %>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-3 rooms-sidebar">
       <div class="card no-outline">
         <div class="card-body">
           <small>Logged in as</small><br>
           <b><%= current_user.username %><br></b>
         </div>
-        <%= link_to pluralize(Notification.unread_count(current_user), 'Notification'), notifications_path %>
+        <div class="row">
+          <div class="col-6">
+            <%= link_to pluralize(Notification.unread_count(current_user), 'Notification'), notifications_path, class: "btn btn-success btn-sm" %>
+          </div>
+          <div class="col-6">
+            <%= link_to "Private Chat", users_private_chat_path, class: "btn btn-primary btn-sm" %>
+          </div>
+        </div>
       </div>
       <hr>
       <%= render 'form', room: Room.new %>

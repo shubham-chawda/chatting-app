@@ -1,0 +1,6 @@
+<div class='private-message'>
+  <% if notification.target.present? %>
+    <strong><%= notification.actor.username %></strong> has messaging
+    <strong><%= notification.target.body %></strong><br>
+  <% end %>
+</div>

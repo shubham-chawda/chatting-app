@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root 'home#index'
   mount Notifications::Engine => "/notifications"
   devise_for :users
   resources :messages
@@ -11,6 +10,8 @@ Rails.application.routes.draw do
     end
     resources :user_messages, only: [:create]
   end
-  # root 'rooms#index'
+
+  get 'users/private-chat' => 'home#index'
+  root 'rooms#index'
 
 end
